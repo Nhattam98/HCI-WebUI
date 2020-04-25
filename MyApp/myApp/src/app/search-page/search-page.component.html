@@ -1,0 +1,56 @@
+<h1 class="text-center">Search</h1>
+<form (ngSubmit)="search(searchForm)" #searchForm="ngForm">
+  <div class="form-group">
+    <label>Keyword</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Keyword"
+      #keyword="ngModel"
+      name="keyword"
+      [(ngModel)]="form.keyword"
+      required
+    />
+    <div *ngIf="keyword?.invalid && (keyword.dirty || keyword.touched)">
+      <div *ngIf="keyword.errors.required">
+        Keyword is required.
+      </div>
+      <div *ngIf="keyword.invalid">
+        Keyword is invalid.
+      </div>
+    </div>
+  </div>
+<button class="btn btn-primary">Search</button>
+</form>
+<br />
+<div
+  class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="10"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="getImages()"
+>
+  <ng-masonry-grid
+    [masonryOptions]="{
+      transitionDuration: '0.8s',
+      gutter: 5,
+      columnWidth: 300,
+      fitWidth: true
+    }"
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    [scrollAnimationOptions]="{
+      animationEffect: 'effect-4',
+      minDuration: 0.4,
+      maxDuration: 0.7
+    }"
+  >
+    <ng-masonry-grid-item
+      id="{{ 'masonry-item-' + i }}"
+      *ngFor="let item of images"
+      class="masonry-item"
+    >
+      <img [src]="item.previewURL" />
+    </ng-masonry-grid-item>
+  </ng-masonry-grid>
+</div>

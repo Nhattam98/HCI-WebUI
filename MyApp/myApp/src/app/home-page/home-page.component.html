@@ -1,0 +1,32 @@
+<h1 class="text-center">Home</h1>
+<div
+  class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="10"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="getImages()"
+>
+  <ng-masonry-grid
+    [masonryOptions]="{
+      transitionDuration: '0.8s',
+      gutter: 5,
+      columnWidth: 300,
+      fitWidth: true
+    }"
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    [scrollAnimationOptions]="{
+      animationEffect: 'effect-4',
+      minDuration: 0.4,
+      maxDuration: 0.7
+    }"
+  >
+    <ng-masonry-grid-item
+      id="{{ 'masonry-item-' + i }}"
+      *ngFor="let item of images"
+      class="masonry-item"
+    >
+      <img [src]="item.previewURL" />
+    </ng-masonry-grid-item>
+  </ng-masonry-grid>
+</div>

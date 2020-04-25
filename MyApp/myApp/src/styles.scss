@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+$width: 300px;
+$auto: auto;
+ng-masonry-grid {
+  margin: 0 $auto;
+}
+.masonry-item {
+  height: $auto;
+  width: $width;
+  img {
+    height: $auto;
+    width: $width;
+    display: inline-block;
+  }
+}
